@@ -1,38 +1,185 @@
-.App {
-  text-align: center;
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Sidebar Styling */
+.sidebar {
+  background-color: #f8f9fa;
+  height: 100%;
+  overflow-y: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar .list-group-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar .list-group-item:hover {
+  background-color: #e9ecef;
+}
+
+.sidebar .status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.sidebar .status-indicator.online {
+  background-color: green;
+}
+
+.sidebar .status-indicator.offline {
+  background-color: gray;
+}
+
+/* Chat Window Styling */
+.chat-window {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: calc(100vh - 56px); /* Adjusting for header height */
+  overflow: hidden;
+}
+
+.chat-header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.chat-body {
+  background-color: #e9ecef;
+  padding: 15px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.chat-body .message {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-body .message.sent {
+  background-color: #007bff;
   color: white;
+  text-align: right;
 }
 
-.App-link {
-  color: #61dafb;
+.chat-body .message.received {
+  background-color: #17a2b8;
+  color: white;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.message-input {
+  padding: 10px;
+  background-color: white;
+  border-top: 1px solid #ddd;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile View */
+@media (max-width: 767px) {
+  /* Sidebar */
+  .sidebar {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+
+  /* Chat Window - Full width */
+  .chat-window {
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  /* Chat Header */
+  .chat-header {
+    font-size: 16px;
+  }
+
+  /* Chat Body */
+  .chat-body {
+    padding: 10px;
+  }
+
+  /* Message Input */
+  .message-input {
+    padding: 8px;
+  }
+}
+
+/* Tablet and Larger Screens (md breakpoint and above) */
+@media (min-width: 768px) {
+  /* Sidebar */
+  .sidebar {
+    display: block;
+    width: 250px;
+  }
+
+  /* Chat Window */
+  .chat-window {
+    flex-direction: row;
+  }
+
+  /* AI ChatBot - Hide on smaller screens */
+  .chat-bot {
+    display: block;
+    width: 300px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-left: 1px solid #ddd;
+  }
+
+  /* Chat Window Center */
+  .chat-body {
+    padding: 20px;
+  }
+
+  /* Chat Header */
+  .chat-header {
+    font-size: 20px;
+  }
+
+  /* Message Input */
+  .message-input {
+    padding: 12px;
+  }
+}
+
+/* Desktop View */
+@media (min-width: 992px) {
+  .chat-window {
+    flex-direction: row;
+  }
+
+  /* Sidebar - Fixed width */
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    top: 56px; /* Adjusting for header height */
+  }
+
+  /* Chat Body */
+  .chat-body {
+    margin-left: 250px;
+  }
+
+  .chat-bot {
+    display: block;
+    width: 350px;
   }
 }
